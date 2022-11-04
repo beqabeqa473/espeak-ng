@@ -18,6 +18,11 @@ SPEECHPLAYER_SRC_FILES := \
 
 LOCAL_SRC_FILES += $(SPEECHPLAYER_SRC_FILES)
 
+SONIC_SRC_FILES := \
+../../third-party/sonic/sonic.c
+
+LOCAL_SRC_FILES += $(SONIC_SRC_FILES)
+
 ESPEAK_SOURCES := \
   src/libespeak-ng/common.c \
   src/libespeak-ng/compiledata.c \
@@ -55,7 +60,7 @@ ESPEAK_SRC_PATH  := ../../src
 ESPEAK_SRC_FILES := \
   $(subst src/,$(ESPEAK_SRC_PATH)/,$(ESPEAK_SOURCES))
 
-LOCAL_CFLAGS    += -DINCLUDE_KLATT -DINCLUDE_SPEECHPLAYER -DINCLUDE_SONIC -DHAVE_ENDIAN_H
+LOCAL_CFLAGS    += -DINCLUDE_KLATT -DINCLUDE_SPEECHPLAYER -DHAVE_SONIC_H -DHAVE_ENDIAN_H
 LOCAL_SRC_FILES += \
   $(filter-out $(BLACKLIST_SRC_FILES),$(ESPEAK_SRC_FILES))
 
@@ -70,6 +75,7 @@ LOCAL_C_INCLUDES += \
   $(LOCAL_PATH)/include \
   $(LOCAL_PATH)/$(UCDTOOLS_SRC_PATH)/include \
   $(LOCAL_PATH)/../../src/speechPlayer/include \
+  $(LOCAL_PATH)/../../third-party/sonic \
   $(LOCAL_PATH)/$(ESPEAK_SRC_PATH)/include \
   $(LOCAL_PATH)/$(ESPEAK_SRC_PATH)/include/compat
 
